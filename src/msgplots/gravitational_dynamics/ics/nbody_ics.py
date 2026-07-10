@@ -2,7 +2,7 @@ from amuse.datamodel import Particles
 from amuse.units import nbody_system as ns
 
 
-def figure8_system():
+def generate_figure8_system():
     """
     Figure 8 system initial conditions courtesy of
     Dr. Tjarda Boekholt.
@@ -59,7 +59,7 @@ def figure8_system():
     return figure8
 
 
-def generate_pythagorean(self):
+def generate_pythagorean_system(self):
     """
     Generate 3 particles in a pythagorean triangle configuration.
     Initial conditions courtesty of Dr. Alessandro Trani.

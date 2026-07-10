@@ -83,7 +83,7 @@ def generate_jupiter_io_system():
     return system
 
 
-def generate_td_jupiter_io_system():
+def generate_jupiter_io_system_td():
     """
     Ephemeris Pasadena, USA, Horizons
 
@@ -129,7 +129,7 @@ def generate_td_jupiter_io_system():
     return system
 
 
-def generate_earth_moon_initial_conditions(self):
+def generate_earth_moon_system(self):
     """
     Earth and moon initial conditions taken from JPL Ephemeris.
 
