@@ -59,7 +59,7 @@ def generate_figure8_system():
     return figure8
 
 
-def generate_pythagorean_system(self):
+def generate_pythagorean_system():
     """
     Generate 3 particles in a pythagorean triangle configuration.
     Initial conditions courtesty of Dr. Alessandro Trani.

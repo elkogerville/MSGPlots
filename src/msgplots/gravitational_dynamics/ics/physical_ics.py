@@ -2,9 +2,10 @@
 from amuse.datamodel import Particles
 from amuse.ext.orbital_elements import generate_binaries
 from amuse.units import units as au
+import numpy as np
 
 
-def generate_HD80606b_system(self):
+def generate_HD80606b_system():
     """
     Initial conditions for the exoplanet system
     HD80606b. Initial conditions courtesy of
@@ -129,7 +130,7 @@ def generate_jupiter_io_system_td():
     return system
 
 
-def generate_earth_moon_system(self):
+def generate_earth_moon_system():
     """
     Earth and moon initial conditions taken from JPL Ephemeris.
 
@@ -174,5 +175,39 @@ def generate_earth_moon_system(self):
     p[1].vz = 5.760594917691098E-03 | au.kms
 
     p.move_to_center()
+
+    return p
+
+
+def generate_earth_moon_system_td():
+    """
+    Earth and moon initial conditions taken from JPL Ephemeris.
+
+    JPL Ephemeris, Pasadena, USA, Horizons System
+
+        * Start time        : A.D. 2026-Jan-01 00:00:00.0000 TDB
+        * Stop  time        : A.D. 2026-Jan-01 00:01:00.0000 TDB
+        * Coordinate Center : Solar System Barycenter
+
+    To be varied are:
+        orbital parameters (parabolic orbit)
+        spin parameters (spin rate and angles)
+        tidal response parameters (kf, tau)
+    """
+    p = generate_earth_moon_system()
+
+    p[0].xi = 0.3308
+    p[0].kf = 0.933
+    p[0].tau = 60. | au.s
+    p[0].wx = 0. | au.rad / au.s
+    p[0].wy = 0. | au.rad / au.s
+    p[0].wz = 2*np.pi / (23.9344695944 | au.hour)
+
+    p[1].xi = 0.394
+    p[1].kf = 0.4
+    p[1].tau = 60. | au.s
+    p[1].wx = 0. | au.rad / au.s
+    p[1].wy = 0. | au.rad / au.s
+    p[1].wz = 0.0000026617 | au.rad / au.s
 
     return p
