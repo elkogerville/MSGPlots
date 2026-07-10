@@ -1,13 +1,17 @@
 
 from amuse.datamodel import Particles
-from amuse.ext.orbital_elements import orbital_elements
+from amuse.ext.orbital_elements import (
+    orbital_elements as _orbital_elements
+)
 from amuse.units import constants as c, units as au
 from visualastro.core.numerical_utils import to_list
 
 
-def get_elements(p: Particles):
+def orbital_elements(p: Particles):
     """
     Compute orbital parameters from a binary particle system.
+
+    This does not perform unit conversions.
 
     Parameters
     ----------
@@ -35,12 +39,7 @@ def get_elements(p: Particles):
     """
     if len(p) != 2:
         raise ValueError(f'Input should be a binary system! Got: N={len(p)}')
-    p_si = p.copy()
-    p_si.position = p_si.position.as_quantity_in(au.m)
-    p_si.velocity = p_si.velocity.as_quantity_in(au.m / au.s)
-    p_si.mass = p_si.mass.as_quantity_in(au.kg)
-
-    return orbital_elements(p_si, G=c.G)
+    return _orbital_elements(p, G=c.G)
 
 
 def get_semimajor_axes(
