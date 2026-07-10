@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "msgplots"
+version = "0.0.1"
+description = "Astro simulation analysis and plotting package"
+authors = [
+    {name = "Elko Gerville-Reache", email = "elkogerville@gmail.com"},
+]
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "astropy",
+    "cmasher",
+    "colorspacious",
+    "dust_extinction",
+    "matplotlib",
+    "numpy",
+    "regions",
+    "reproject",
+    "scienceplots",
+    "scipy",
+    "spectral_cube",
+    "specutils",
+    "tol-colors",
+    "tqdm",
+    "visualastro",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/elkogerville/MSGPlots"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"msgplots" = [
+    "*.md",
+    "LICENSE"
+]
+
+[tool.setuptools.exclude-package-data]
+"*" = [
+    "*.egg-info/*",
+    "*.egg-info",
+    "EGG-INFO/*",
+]
+
+exclude = [
+    "Tests*",
+    "build*",
+    "dist*",
+    "*egg-info*",
+    "*.egg-info",
+    "EGG-INFO*",
+]
