@@ -46,6 +46,89 @@ def generate_HD80606b_system(self):
     return HD80606
 
 
+def generate_jupiter_io_system():
+    """
+    Ephemeris Pasadena, USA, Horizons
+
+    JPL Ephemeris, Pasadena, USA, Horizons System
+
+        * Start time        : A.D. 2026-Jan-01 00:00:00.0000 TDB
+        * Stop  time        : A.D. 2026-Jan-01 00:01:00.0000 TDB
+        * Coordinate Center : Solar System Barycenter
+    """
+    system = Particles(2)
+
+    system[0].name = 'Jupiter'
+    system[0].mass = 1898.6e24 | au.kg
+    system[0].radius = 6371.01 | au.km
+    system[0].x = -2.538781102425539e8 | au.km
+    system[0].y = 7.365225847926259e8 | au.km
+    system[0].z = 2.626628058868796e6 | au.km
+    system[0].vx = -1.250707427525374e1 | au.kms
+    system[0].vy = -3.638417682823274 | au.kms
+    system[0].vz = 2.949797151579847e-1 | au.kms
+
+    system[1].name = 'Io'
+    system[1].mass = 893193797311089e8 | au.kg
+    system[1].radius = 1821.6 | au.km
+    system[1].x = -2.535070263728397e8 | au.km
+    system[1].y = 7.363212379813337e8 | au.km
+    system[1].z = 2.624656018151939e6 | au.km
+    system[1].vx = -4.195592326222561 | au.kms
+    system[1].vy = 1.153726914561471e1 | au.kms
+    system[1].vz = 9.564081722803852e-1 | au.kms
+
+    system.move_to_center()
+
+    return system
+
+
+def generate_td_jupiter_io_system():
+    """
+    Ephemeris Pasadena, USA, Horizons
+
+    JPL Ephemeris, Pasadena, USA, Horizons System
+
+        * Start time        : A.D. 2026-Jan-01 00:00:00.0000 TDB
+        * Stop  time        : A.D. 2026-Jan-01 00:01:00.0000 TDB
+        * Coordinate Center : Solar System Barycenter
+
+    Jupiter:
+    kf from: Dong Lai 2021 Planet. Sci. J. 2 122 DOI 10.3847/PSJ/ac013b
+    xi from: https://doi.org/10.1016/j.icarus.2011.09.016
+    spin vector from: https://radiojove.gsfc.nasa.gov/education/jupiter/basics/jfacts.htm
+
+    Io:
+    kf from https://doi.org/10.1016/j.icarus.2025.116567
+    xi from Schubert et al. 2004
+    spin vector from https://doi.org/10.1016/j.icarus.2012.05.020 and ephemeris
+
+    spin vectors were calculated from LOD, OBL, PSI using
+    the ``Tidymess.convert_spin_vectors_to_inertial()`` method.
+
+    tau values are arbitrary for both bodies.
+    """
+    system = generate_jupiter_io_system()
+
+    system[0].kf = 0.565
+    system[0].xi = 0.2629
+    system[0].tau = 0 | au.s
+    system[0].wx = 0.0 | 1 / au.s
+    system[0].wy = -9.60092648806e-6 | 1 / au.s
+    system[0].wz = 0.000175573560178 | 1 / au.s
+    system[0].a_mb = 0
+
+    system[1].kf = 0.125
+    system[1].xi = 0.378
+    system[1].tau = 0 | au.s
+    system[1].wx = 0.0 | 1 / au.s
+    system[1].wy = -1.43416864277e-9 | 1 / au.s
+    system[1].wz = 4.10859051537e-5 | 1 / au.s
+    system[1].a_mb = 0
+
+    return system
+
+
 def generate_earth_moon_initial_conditions(self):
     """
     Earth and moon initial conditions taken from JPL Ephemeris.
