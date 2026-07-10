@@ -1,10 +1,50 @@
 
-from amuse.datamodel import Particle, Particles
-from amuse.units import (
-    constants as c,
-    nbody_system as ns,
-    units as au
-)
+from amuse.datamodel import Particles
+from amuse.ext.orbital_elements import generate_binaries
+from amuse.units import units as au
+
+
+def generate_HD80606b_system(self):
+    """
+    Initial conditions for the exoplanet system
+    HD80606b. Initial conditions courtesy of
+    Dr. Tjarda Boekholt.
+    """
+    HD80606 = Particles(2)
+    star, planet = generate_binaries(
+        primary_mass=2.0088092e30 | au.kg,
+        secondary_mass=7.7459434e27 | au.kg,
+        semi_major_axis=0.455 | au.au,
+        eccentricity=0.9330
+    )
+    HD80606[0].name = 'HD80606'
+    HD80606[0].mass = star.mass
+    HD80606[0].radius = 702455.0 | au.km
+    HD80606[0].x = star.x.as_quantity_in(au.km)
+    HD80606[0].y = star.y.as_quantity_in(au.km)
+    HD80606[0].z = star.z.as_quantity_in(au.km)
+    HD80606[0].vx = star.vx.as_quantity_in(au.kms)
+    HD80606[0].vy = star.vy.as_quantity_in(au.kms)
+    HD80606[0].vz = star.vz.as_quantity_in(au.kms)
+    HD80606[0].wx = 0.0 | 1 / au.s
+    HD80606[0].wy = 0.0 | 1 / au.s
+    HD80606[0].wz = 2.97188607137e-6 | 1 / au.s
+
+    HD80606[1].name = 'HD80606b'
+    HD80606[1].mass = planet.mass
+    HD80606[1].radius = 68488.3446 | au.km
+    HD80606[1].x = planet.x.as_quantity_in(au.km)
+    HD80606[1].y = planet.y.as_quantity_in(au.km)
+    HD80606[1].z = planet.z.as_quantity_in(au.km)
+    HD80606[1].vx = planet.vx.as_quantity_in(au.kms)
+    HD80606[1].vy = planet.vy.as_quantity_in(au.kms)
+    HD80606[1].vz = planet.vz.as_quantity_in(au.kms)
+    HD80606[1].wx = 0.0 | 1 / au.s
+    HD80606[1].wy = 0.0 | 1 / au.s
+    HD80606[1].wz = 0.000145444104333 | 1 / au.s
+
+    return HD80606
+
 
 def generate_earth_moon_initial_conditions(self):
     """
