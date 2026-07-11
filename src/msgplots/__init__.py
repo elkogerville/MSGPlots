@@ -1,4 +1,7 @@
-from amuse.io import read_set_from_file
+from msgplots.gravitational_dynamics.plotting.io import (
+    savepoint,
+    write_set_2_file
+)
 from msgplots.gravitational_dynamics.plotting.orbits import (
     get_semimajor_axes,
     orbital_elements,

@@ -3,12 +3,13 @@ from amuse.datamodel import Particles
 from amuse.io import read_set_from_file, write_set_to_file
 
 
-def add_savepoint(obj, time=None) -> Particles:
+def savepoint(obj, time=None) -> Particles:
     """
     Add a model time savepoint to a particleset. Savepoint
     time accessible via the `get_timestep` method.
 
-    Equivalent to `particles.savepoint(time)`.
+    Equivalent to `particles.savepoint(time)`. Always
+    returns a copy of `obj`.
 
     Parameters
     ----------
@@ -17,6 +18,7 @@ def add_savepoint(obj, time=None) -> Particles:
         instance and a `time`, or provide
         an amuse code instance with
         `model_time` and `particles` attributes.
+        Is a copy of `obj`.
     time :  float | ScalarQuantity
         Time to save.
 
@@ -66,7 +68,7 @@ def write_set_2_file(
     :func:`get_options_for_format`
     """
     return write_set_to_file(
-        add_savepoint(set, time),
+        savepoint(set, time),
         filename=filename,
         format=format,
         **format_specific_keyword_arguments
