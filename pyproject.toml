@@ -42,7 +42,7 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/elkogerville/MSGPlots"
+Homepage = "https://github.com/elkogerville/AmusePlottingLibrary"
 
 [tool.setuptools]
 include-package-data = true
