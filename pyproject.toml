@@ -3,9 +3,9 @@ requires = ["setuptools>=64", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "msgplots"
+name = "apl"
 version = "0.0.1"
-description = "Astro simulation analysis and plotting package"
+description = "Astrophysical Multipurpose Simulation Environment Plotting Library"
 authors = [
     {name = "Elko Gerville-Reache", email = "elkogerville@gmail.com"},
 ]
@@ -51,7 +51,7 @@ include-package-data = true
 where = ["src"]
 
 [tool.setuptools.package-data]
-"msgplots" = [
+"apl" = [
     "*.md",
     "LICENSE"
 ]

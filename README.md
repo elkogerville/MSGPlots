@@ -1,4 +1,4 @@
-# MSGPlots
+# Amuse Plotting Library
 Simulation Analysis Library
 
 
